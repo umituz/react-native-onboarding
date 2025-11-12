@@ -54,11 +54,19 @@ export { OnboardingScreen, type OnboardingScreenProps } from "./presentation/scr
 export { OnboardingHeader, type OnboardingHeaderProps } from "./presentation/components/OnboardingHeader";
 export { OnboardingFooter, type OnboardingFooterProps } from "./presentation/components/OnboardingFooter";
 
-// Export OnboardingSlide component
-// Note: We export it with the same name as the type, which TypeScript allows
-// because one is a type (from domain) and one is a value (component)
-// Users can import both: 
-//   import type { OnboardingSlide } from '@umituz/react-native-onboarding'; // type
-//   import { OnboardingSlide } from '@umituz/react-native-onboarding'; // component
-export { OnboardingSlide, type OnboardingSlideProps } from "./presentation/components/OnboardingSlide";
+// Export OnboardingSlide component with a different name to avoid conflict with type
+// The type is exported above as OnboardingSlide
+// The component is exported here as OnboardingSlideComponent
+// For backward compatibility, we also export it as OnboardingSlide using namespace
+import { OnboardingSlide as OnboardingSlideComponent } from "./presentation/components/OnboardingSlide";
+export { OnboardingSlideComponent };
+export type { OnboardingSlideProps } from "./presentation/components/OnboardingSlide";
+
+// Re-export component as OnboardingSlide for backward compatibility
+// This creates a namespace that allows both type and value with same name
+declare namespace OnboardingSlideNamespace {
+  export type OnboardingSlide = import("./domain/entities/OnboardingSlide").OnboardingSlide;
+  export const OnboardingSlide: typeof OnboardingSlideComponent;
+}
+export { OnboardingSlideComponent as OnboardingSlide };
 
