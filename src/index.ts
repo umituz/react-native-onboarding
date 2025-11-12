@@ -51,7 +51,14 @@ export {
 // =============================================================================
 
 export { OnboardingScreen, type OnboardingScreenProps } from "./presentation/screens/OnboardingScreen";
-export { OnboardingSlide, type OnboardingSlideProps } from "./presentation/components/OnboardingSlide";
 export { OnboardingHeader, type OnboardingHeaderProps } from "./presentation/components/OnboardingHeader";
 export { OnboardingFooter, type OnboardingFooterProps } from "./presentation/components/OnboardingFooter";
+
+// Export OnboardingSlide component
+// Note: We export it with the same name as the type, which TypeScript allows
+// because one is a type (from domain) and one is a value (component)
+// Users can import both: 
+//   import type { OnboardingSlide } from '@umituz/react-native-onboarding'; // type
+//   import { OnboardingSlide } from '@umituz/react-native-onboarding'; // component
+export { OnboardingSlide, type OnboardingSlideProps } from "./presentation/components/OnboardingSlide";
 

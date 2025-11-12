@@ -11,6 +11,8 @@ export interface UseOnboardingNavigationReturn {
   currentIndex: number;
   goToNext: () => void;
   goToPrevious: () => void;
+  complete: () => Promise<void>;
+  skip: () => Promise<void>;
   isLastSlide: boolean;
   isFirstSlide: boolean;
 }
