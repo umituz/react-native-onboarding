@@ -133,7 +133,7 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({
       {renderSlide ? (
         renderSlide(currentSlide)
       ) : (
-        <OnboardingSlide slide={currentSlide} />
+        <OnboardingSlideComponent slide={currentSlide} />
       )}
       {renderFooter ? (
         renderFooter({
