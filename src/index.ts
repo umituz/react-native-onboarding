@@ -30,7 +30,9 @@
 // DOMAIN LAYER - Entities and Interfaces
 // =============================================================================
 
-export type { OnboardingSlide } from "./domain/entities/OnboardingSlide";
+// Export type with a different name to avoid conflict with component
+export type { OnboardingSlide as OnboardingSlideType } from "./domain/entities/OnboardingSlide";
+// Re-export as OnboardingSlide for backward compatibility (after component export)
 export type { OnboardingOptions } from "./domain/entities/OnboardingOptions";
 
 // =============================================================================
@@ -56,14 +58,17 @@ export { OnboardingFooter, type OnboardingFooterProps } from "./presentation/com
 
 // Export OnboardingSlide component
 // Note: TypeScript doesn't allow exporting both a type and a value with the same name in the same scope
-// So we export the component with a different name, and users can import the type separately
+// So we export the component, and the type is exported above as OnboardingSlideType
 import { OnboardingSlide as OnboardingSlideComponent } from "./presentation/components/OnboardingSlide";
 export { OnboardingSlideComponent };
 export type { OnboardingSlideProps } from "./presentation/components/OnboardingSlide";
 
-// For backward compatibility, export component as OnboardingSlide
-// Users should import type as: import type { OnboardingSlide } from '@umituz/react-native-onboarding'
-// And component as: import { OnboardingSlideComponent } from '@umituz/react-native-onboarding'
-// Or use the alias: import { OnboardingSlideComponent as OnboardingSlide } from '@umituz/react-native-onboarding'
+// Export component as OnboardingSlide for backward compatibility
+// Users can import type as: import type { OnboardingSlideType } from '@umituz/react-native-onboarding'
+// And component as: import { OnboardingSlide } from '@umituz/react-native-onboarding'
 export { OnboardingSlideComponent as OnboardingSlide };
+
+// Re-export type as OnboardingSlide for backward compatibility (after component export)
+// This works because TypeScript allows type and value with same name in different declarations
+export type { OnboardingSlideType as OnboardingSlide };
 
