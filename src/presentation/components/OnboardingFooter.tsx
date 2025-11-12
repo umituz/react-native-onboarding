@@ -8,7 +8,7 @@ import React, { useMemo } from "react";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useLocalization } from "@umituz/react-native-localization";
-import { useAppDesignTokens } from "@umituz/react-native-theme";
+import { useAppDesignTokens } from "@umituz/react-native-design-system-theme";
 
 export interface OnboardingFooterProps {
   currentIndex: number;
