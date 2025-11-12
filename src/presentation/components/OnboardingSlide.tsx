@@ -6,6 +6,7 @@
 
 import React, { useMemo } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { AtomicIcon } from "@umituz/react-native-design-system";
 import type { OnboardingSlide as OnboardingSlideType } from "../../domain/entities/OnboardingSlide";
 
 export interface OnboardingSlideProps {
@@ -15,6 +16,9 @@ export interface OnboardingSlideProps {
 export const OnboardingSlide: React.FC<OnboardingSlideProps> = ({ slide }) => {
   const styles = useMemo(() => getStyles(), []);
 
+  // Check if icon is an emoji (contains emoji characters) or Lucide icon name
+  const isEmoji = /[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/u.test(slide.icon);
+
   return (
     <ScrollView
       contentContainerStyle={styles.content}
@@ -23,7 +27,15 @@ export const OnboardingSlide: React.FC<OnboardingSlideProps> = ({ slide }) => {
     >
       <View style={styles.slideContent}>
         <View style={styles.iconContainer}>
-          <Text style={styles.icon}>{slide.icon}</Text>
+          {isEmoji ? (
+            <Text style={styles.icon}>{slide.icon}</Text>
+          ) : (
+            <AtomicIcon
+              name={slide.icon as any}
+              customSize={60}
+              customColor="#FFFFFF"
+            />
+          )}
         </View>
         <Text style={styles.title}>{slide.title}</Text>
         <Text style={styles.description}>{slide.description}</Text>
