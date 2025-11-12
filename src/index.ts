@@ -54,19 +54,16 @@ export { OnboardingScreen, type OnboardingScreenProps } from "./presentation/scr
 export { OnboardingHeader, type OnboardingHeaderProps } from "./presentation/components/OnboardingHeader";
 export { OnboardingFooter, type OnboardingFooterProps } from "./presentation/components/OnboardingFooter";
 
-// Export OnboardingSlide component with a different name to avoid conflict with type
-// The type is exported above as OnboardingSlide
-// The component is exported here as OnboardingSlideComponent
-// For backward compatibility, we also export it as OnboardingSlide using namespace
+// Export OnboardingSlide component
+// Note: TypeScript doesn't allow exporting both a type and a value with the same name in the same scope
+// So we export the component with a different name, and users can import the type separately
 import { OnboardingSlide as OnboardingSlideComponent } from "./presentation/components/OnboardingSlide";
 export { OnboardingSlideComponent };
 export type { OnboardingSlideProps } from "./presentation/components/OnboardingSlide";
 
-// Re-export component as OnboardingSlide for backward compatibility
-// This creates a namespace that allows both type and value with same name
-declare namespace OnboardingSlideNamespace {
-  export type OnboardingSlide = import("./domain/entities/OnboardingSlide").OnboardingSlide;
-  export const OnboardingSlide: typeof OnboardingSlideComponent;
-}
+// For backward compatibility, export component as OnboardingSlide
+// Users should import type as: import type { OnboardingSlide } from '@umituz/react-native-onboarding'
+// And component as: import { OnboardingSlideComponent } from '@umituz/react-native-onboarding'
+// Or use the alias: import { OnboardingSlideComponent as OnboardingSlide } from '@umituz/react-native-onboarding'
 export { OnboardingSlideComponent as OnboardingSlide };
 

@@ -1,6 +1,6 @@
 {
   "name": "@umituz/react-native-onboarding",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Generic onboarding flow for React Native apps with gradient backgrounds, animations, and customizable slides. SOLID, DRY, KISS principles applied.",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
