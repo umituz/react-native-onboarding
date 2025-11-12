@@ -13,7 +13,7 @@ import type { OnboardingOptions } from "../../domain/entities/OnboardingOptions"
 import { useOnboardingNavigation } from "../../infrastructure/hooks/useOnboardingNavigation";
 import { useOnboardingStore } from "../../infrastructure/storage/OnboardingStore";
 import { OnboardingHeader } from "../components/OnboardingHeader";
-import { OnboardingSlide } from "../components/OnboardingSlide";
+import { OnboardingSlide as OnboardingSlideComponent } from "../components/OnboardingSlide";
 import { OnboardingFooter } from "../components/OnboardingFooter";
 
 export interface OnboardingScreenProps extends OnboardingOptions {
