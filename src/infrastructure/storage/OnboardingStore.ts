@@ -51,27 +51,45 @@ export const useOnboardingStore = create<OnboardingStore>((set, get) => ({
   },
 
   complete: async (storageKey = DEFAULT_STORAGE_KEY) => {
-    set({ loading: true, error: null });
+    // Optimistic update: Update state immediately for instant UI feedback
+    set({ 
+      isOnboardingComplete: true, 
+      loading: false, 
+      error: null 
+    });
 
+    // Persist to storage in background
     const result = await storageRepository.setString(storageKey, "true");
 
-    set({
-      isOnboardingComplete: result.success,
-      loading: false,
-      error: result.success ? null : result.error?.message || null,
-    });
+    // Update state only if storage operation failed
+    if (!result.success) {
+      set({
+        isOnboardingComplete: false,
+        loading: false,
+        error: result.error?.message || "Failed to save onboarding completion",
+      });
+    }
   },
 
   skip: async (storageKey = DEFAULT_STORAGE_KEY) => {
-    set({ loading: true, error: null });
+    // Optimistic update: Update state immediately for instant UI feedback
+    set({ 
+      isOnboardingComplete: true, 
+      loading: false, 
+      error: null 
+    });
 
+    // Persist to storage in background
     const result = await storageRepository.setString(storageKey, "true");
 
-    set({
-      isOnboardingComplete: result.success,
-      loading: false,
-      error: result.success ? null : result.error?.message || null,
-    });
+    // Update state only if storage operation failed
+    if (!result.success) {
+      set({
+        isOnboardingComplete: false,
+        loading: false,
+        error: result.error?.message || "Failed to save onboarding skip",
+      });
+    }
   },
 
   setCurrentStep: (step) => set({ currentStep: step }),
